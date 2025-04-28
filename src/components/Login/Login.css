@@ -1,136 +1,133 @@
 .login-container {
-    width: 500px;
-    height: 430px;
-    margin: 60px auto;
-    background-color: #F5F5F5;
-    border-radius: 16px;
-    padding: 2rem;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    border: 1px solid rgba(0, 0, 0, 0.26);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  height: 430px;
+  margin: 60px auto;
+  background-color: #f5f5f5;
+  border-radius: 16px;
+  padding: 2rem;
+  font-family: "Segoe UI", Arial, sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.26);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
+.login-container .login-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-bottom: 25px;
+.login-container .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 25px;
 }
 
-.input {
-    display: flex;
-    margin: auto;
-    gap: 0.5rem;
-    flex-direction: column;
+.login-container .input {
+  display: flex;
+  margin: auto;
+  gap: 0.5rem;
+  flex-direction: column;
 }
 
-.input input {
-    padding: 0.8rem;
-    width: 435px;
-    height: 12px;
-    border: 1px solid #B7B7B7;
-    border-radius: 50px;
-    transition: border-color 0.3s;
+.login-container .input input {
+  padding: 0.8rem;
+  width: 435px;
+  height: 12px;
+  border: 1px solid #b7b7b7;
+  border-radius: 50px;
+  transition: border-color 0.3s;
 }
 
-.input input:focus {
-    outline: none;
-    border-color: #2B7B8C;
+.login-container .input input:focus {
+  outline: none;
+  border-color: #2b7b8c;
 }
 
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+.login-container .form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-.form-options > * {
-    margin: 0 20px;
+.login-container .form-options > * {
+  margin: 0 20px;
 }
 
-.remember-me {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
+.login-container .remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
 }
 
-.remember-me input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 18px;
-    width: 18px;
+.login-container .remember-me input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
 }
 
-.remember-me .checkmark {
-    width: 18px;
-    height: 18px;
-    background-color: white;
-    border: 1px solid #B7B7B7;
-    border-radius: 4px;
+.login-container .remember-me .checkmark {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border: 1px solid #b7b7b7;
+  border-radius: 4px;
 }
 
-.remember-me input:checked ~ .checkmark {
-    background-color: #2B7B8C;
-    border-color: #2B7B8C;
+.login-container .remember-me input:checked ~ .checkmark {
+  background-color: #2b7b8c;
+  border-color: #2b7b8c;
 }
 
-.remember-me .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-    left: 5px;
-    top: 1px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+.login-container .remember-me .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
-.remember-me input:checked ~ .checkmark:after {
-    display: block;
+.login-container .remember-me input:checked ~ .checkmark:after {
+  display: block;
 }
 
-
-.forgot-password {
-    color: #2B7B8C;
-    text-decoration: none;
-    font-size: 0.9rem;
+.login-container .forgot-password {
+  color: #2b7b8c;
+  text-decoration: none;
+  font-size: 0.9rem;
 }
 
-.forgot-password:hover {
-    text-decoration: underline;
+.login-container .forgot-password:hover {
+  text-decoration: underline;
 }
 
-.submit-container {
-    width: 430px;
-    height: 12px;
-    background-color: #2B7B8C;
-    color: white;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: #2B7B8C 0.3s;
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    line-height: 1;
+.login-container .submit-container {
+  width: 430px;
+  height: 12px;
+  background-color: #2b7b8c;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: #2b7b8c 0.3s;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1;
 }
 
-.submit-container:hover {
-    background-color: #1E5F6B;
-    transform: translateY(-2px);
+.login-container .submit-container:hover {
+  background-color: #1e5f6b;
+  transform: translateY(-2px);
 }
-
-

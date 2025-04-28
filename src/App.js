@@ -1,12 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import Login from './components/Login/Login';
+import React from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
+import HomePage from "./pages/HomePage";
+import GeoCarte from "./pages/GeoCart";
+import LoginPage from "./pages/LoginPage";
 function App() {
   return (
-    <div>
-      <Login />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/GeoCarte" element={<GeoCarte />}></Route>
+        <Route path="/LoginPage" element={<LoginPage />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
