@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../components/Assets/logoo.png";
+import logo from "../../components/Assets/logoo.png";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -10,6 +10,9 @@ const HomePage = () => {
   };
   const goTOSignIn = () => {
     navigate("/LoginPage");
+  };
+  const goToFormPage = () => {
+    navigate("/FormPage");
   };
   return (
     <div
@@ -49,6 +52,20 @@ const HomePage = () => {
         onClick={goTOSignIn}
       >
         Sign In
+      </button>
+      <button
+        style={{
+          backgroundColor: "#3B82F6",
+          color: "white",
+          marginTop: "16px",
+          padding: "8px 16px",
+          borderRadius: "8px",
+          border: "none",
+          cursor: "pointer",
+        }}
+        onClick={goToFormPage}
+      >
+        Formulaire
       </button>
     </div>
   );
