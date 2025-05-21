@@ -11,6 +11,9 @@ const HomePage = () => {
   const goTOSignIn = () => {
     navigate("/LoginPage");
   };
+  const goToSignUp = () => {
+    navigate("/SignupPage");
+  };
   const goToFormPage = () => {
     navigate("/FormPage");
   };
@@ -27,7 +30,7 @@ const HomePage = () => {
       <img src={logo} alt="Logo" style={{ width: "150px" }} />
       <button
         style={{
-          backgroundColor: "#3B82F6", // bleu
+          backgroundColor: "#3B82F6", 
           color: "white",
           marginTop: "16px",
           padding: "8px 16px",
@@ -50,6 +53,20 @@ const HomePage = () => {
           cursor: "pointer",
         }}
         onClick={goTOSignIn}
+      >
+        Sign Up
+      </button>
+      <button
+        style={{
+          backgroundColor: "#3B82F6",
+          color: "white",
+          marginTop: "16px",
+          padding: "8px 16px",
+          borderRadius: "8px",
+          border: "none",
+          cursor: "pointer",
+        }}
+        onClick={goToSignUp}
       >
         Sign In
       </button>
