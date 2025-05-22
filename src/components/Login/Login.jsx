@@ -1,51 +1,87 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Login.css";
 import logo from "../Assets/logoo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+
+    const navigate = useNavigate();
+
+    const [form, setForm] = useState({
+        email: "",
+        password: "",
+        rememberMe: false
+    });
+
+    const handleChange = (e) => {
+        const { id, value, type, checked } = e.target;
+        setForm({
+            ...form,
+            [id]: type === "checkbox" ? checked : value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try{
+            const response = await axios.post("http://localhost:8081/auth/login", {
+                email: form.email,
+                password: form.password
+            });
+
+            alert("Connexion réussie !");
+            navigate("/");
+        } catch(error){
+            alert("Erreur lors de la connexion : " + (error.response?.data || error.message));
+        }
+    };
+
 return (
     <div className="login-container">
-    <div className="login-header">
-        <img src={logo} alt="logo" />
-    </div>
-    <div className="inputs">
-        <div className="input">
-        <label htmlFor="email">Email :</label>
-        <input
-            type="email"
-            id="email"
-            // value={email}
-            // onChange={(e) => setEmail(e.target.value)}
-            // required
-        />
+        <div className="login-header">
+            <img src={logo} alt="logo" />
         </div>
+        <form className="inputs" onSubmit={handleSubmit}>
+            <div className="input">
+                <label htmlFor="email">Email :</label>
+                <input
+                    type="email"
+                    id="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
         <div className="input">
-        <label htmlFor="password">Mot de passe :</label>
-        <input
-            type="password"
-            id="password"
-            // value={password}
-            // onChange={(e) => setPassword(e.target.value)}
-            // required
-        />
+            <label htmlFor="password">Mot de passe :</label>
+            <input
+                type="password"
+                id="password"
+                value={form.password}
+                onChange={handleChange}
+                required
+            />
         </div>
-    </div>
 
-    <div className="form-options">
-        <label className="remember-me">
-        <input
-            type="checkbox"
-            id="rememberMe"
-            // checked={rememberMe}
-            // onChange={(e) => setRememberMe(e.target.checked)}
-        />
-        <span className="checkmark"></span>
-        Se souvenir de moi
-        </label>
-        <Link to="/forgot-password">Mot de passe oublié ?</Link>
-    </div>
-    <div className="submit-container">Login</div>
+        <div className="form-options">
+            <label className="remember-me">
+            <input
+                type="checkbox"
+                id="rememberMe"
+                checked={form.rememberMe}
+                onChange={handleChange}
+            />
+            <span className="checkmark"></span>
+                Se souvenir de moi
+            </label>
+            <Link to="/forgot-password">Mot de passe oublié ?</Link>
+        </div>
+        <div className="submit-container">
+            <button type="submit">Login</button>
+        </div>
+    </form>
     </div>
 );
 };
