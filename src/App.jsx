@@ -6,7 +6,9 @@ import GeoCarte from "./pages/Cartegraphie/GeoCart";
 import LoginPage from "./pages/Login/LoginPage";
 import FormPage from "./pages/Formulaire/FormPage";
 import SignupPage from "./pages/Signup/SignupPage";
+import DashGlobal from "./pages/DashGlobal";
 
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -15,10 +17,12 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/GeoCarte" element={<GeoCarte />}></Route>
         <Route path="/LoginPage" element={<LoginPage />}></Route>
-        <Route path="/FormPage" element={<FormPage />} ></Route>
-        <Route path="/SignupPage" element={<SignupPage />} ></Route>
+        <Route path="/FormPage" element={<FormPage />}></Route>
+        <Route path="/SignupPage" element={<SignupPage />}></Route>
+        <Route path="/DashGlobal" element={<DashGlobal />}></Route>
 
-
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Dashboard/:schoolId" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );

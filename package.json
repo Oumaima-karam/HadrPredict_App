@@ -5,6 +5,10 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.0",
+    "@nivo/pie": "^0.98.0",
     "@tailwindcss/vite": "^4.1.7",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -13,6 +17,7 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "axios": "^1.9.0",
+    "flowbite": "^3.1.2",
     "framer-motion": "^12.12.1",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.511.0",
@@ -22,10 +27,12 @@
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.6.0",
     "react-tooltip": "^5.28.1",
+    "recharts": "^2.15.3",
     "tailwindcss": "^4.1.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "dev": "vite",
     "start": "vite",
     "build": "vite build",
     "lint": "eslint .",

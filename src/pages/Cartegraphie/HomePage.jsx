@@ -1,89 +1,38 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../components/Assets/logoo.png";
+import Dashboard from "../Dashboard";
+import Sidebar from "../../components/Layout/Sidebar/Sidebar";
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  const goToSecondPage = () => {
-    navigate("/GeoCarte");
-  };
-  const goTOSignIn = () => {
-    navigate("/LoginPage");
-  };
-  const goToSignUp = () => {
-    navigate("/SignupPage");
-  };
-  const goToFormPage = () => {
-    navigate("/FormPage");
-  };
   return (
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
         height: "100vh",
+        width: "100vw",
       }}
     >
-      <img src={logo} alt="Logo" style={{ width: "150px" }} />
-      <button
+      <Sidebar />
+
+      <div
         style={{
-          backgroundColor: "#3B82F6", 
-          color: "white",
-          marginTop: "16px",
-          padding: "8px 16px",
-          borderRadius: "8px",
-          border: "none",
-          cursor: "pointer",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100vw",
         }}
-        onClick={goToSecondPage}
       >
-        Voir la carte
-      </button>
-      <button
-        style={{
-          backgroundColor: "#3B82F6",
-          color: "white",
-          marginTop: "16px",
-          padding: "8px 16px",
-          borderRadius: "8px",
-          border: "none",
-          cursor: "pointer",
-        }}
-        onClick={goTOSignIn}
-      >
-        Sign Up
-      </button>
-      <button
-        style={{
-          backgroundColor: "#3B82F6",
-          color: "white",
-          marginTop: "16px",
-          padding: "8px 16px",
-          borderRadius: "8px",
-          border: "none",
-          cursor: "pointer",
-        }}
-        onClick={goToSignUp}
-      >
-        Sign In
-      </button>
-      <button
-        style={{
-          backgroundColor: "#3B82F6",
-          color: "white",
-          marginTop: "16px",
-          padding: "8px 16px",
-          borderRadius: "8px",
-          border: "none",
-          cursor: "pointer",
-        }}
-        onClick={goToFormPage}
-      >
-        Formulaire
-      </button>
+        <img
+          src="src\components\Assets\logo.png"
+          alt="logo"
+          style={{
+            maxWidth: "100%",
+            maxHeight: "80vh",
+          }}
+        />
+      </div>
     </div>
   );
 };
