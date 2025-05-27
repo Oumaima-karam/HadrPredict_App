@@ -78,10 +78,13 @@ return (
             </label>
             <Link to="/forgot-password">Mot de passe oublié ?</Link>
         </div>
-        <div className="submit-container">
-            <button type="submit">Login</button>
-        </div>
+        <button type="submit">Login</button>
     </form>
+    
+
+    <div className="register-redirect">
+        <p>Vous n'avez pas de compte ? <Link to="/SignupPage">Inscrivez-vous</Link></p>
+    </div>
     </div>
 );
 };

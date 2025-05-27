@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Dash.module.css";
 import PieChart from "../Chart/PieChart";
+import Sidebar from '../Layout/Sidebar/Sidebar';
+
 import {
   BsFillArchiveFill,
   BsFillGrid3X3GapFill,
@@ -65,8 +67,11 @@ const DashComponent = ({ schoolId }) => {
   }, [schoolId]);
 
   return (
-    <main className={styles.mainContainer}>
-      {/* Titre dynamique */}
+    <div className="page-layout">
+
+      <Sidebar />
+
+      <main className={styles.mainContainer}>
       <div className={styles.mainTitle}>
         <h3>
           {schoolId
@@ -75,7 +80,6 @@ const DashComponent = ({ schoolId }) => {
         </h3>
       </div>
 
-      {/* Cartes dynamiques */}
       <div className={styles.mainCards}>
         <div className={styles.card} style={{ backgroundColor: "#2962ff" }}>
           <div className={styles.cardInner}>
@@ -100,7 +104,6 @@ const DashComponent = ({ schoolId }) => {
         </div>
       </div>
 
-      {/* Graphiques */}
       <div className={styles.charts}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -138,9 +141,9 @@ const DashComponent = ({ schoolId }) => {
         </ResponsiveContainer>
       </div>
 
-      {/* PieChart */}
       <PieChart schoolId={schoolId} />
     </main>
+    </div>
   );
 };
 

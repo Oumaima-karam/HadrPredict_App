@@ -3,7 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import schoolIconUrl from "../components/Assets/school.png";
-import { useNavigate } from "react-router-dom"; // ⬅️ Import ici
+import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Layout/Sidebar/Sidebar";
 
 const schoolIcon = new L.Icon({
   iconUrl: schoolIconUrl,
@@ -33,15 +34,19 @@ const SchoolMap = () => {
   const navigate = useNavigate();
 
   return (
+    <div className="page-layout">
+
+      <Sidebar />
+
     <div
-      style={{
-        height: "100vh",
-        width: "100vw",
-        overflow: "hidden",
-        padding: "16px",
-        boxSizing: "border-box",
-        backgroundColor: "#f0f0f0",
-      }}
+    style={{
+      height: "100vh",
+      width: "100vw",
+      overflow: "hidden",
+      padding: "16px",
+      boxSizing: "border-box",
+      backgroundColor: "#f0f0f0",
+    }}
     >
       <div
         style={{
@@ -67,7 +72,7 @@ const SchoolMap = () => {
               icon={schoolIcon}
               eventHandlers={{
                 click: () => {
-                  navigate(`/Dashboard/${school.id}`); // Redirection ici
+                  navigate(`/Dashboard/${school.id}`); 
                 },
               }}
             >
@@ -80,6 +85,7 @@ const SchoolMap = () => {
           ))}
         </MapContainer>
       </div>
+    </div>
     </div>
   );
 };

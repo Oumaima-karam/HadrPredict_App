@@ -110,7 +110,7 @@
   text-decoration: underline;
 }
 
-.login-container .submit-container {
+.login-container .button {
   width: 430px;
   background-color: #2b7b8c;
   color: white;
@@ -127,7 +127,22 @@
   line-height: 1;
 }
 
-.login-container .submit-container:hover {
+.login-container .button:hover {
   background-color: #1e5f6b;
   transform: translateY(-2px);
+}
+
+.register-redirect {
+    margin-top: 1rem;
+    text-align: center;
+    color: #666;
+}
+
+.register-redirect a {
+    color: #2b7b8c;
+    text-decoration: none;
+}
+
+.register-redirect a:hover {
+    text-decoration: underline;
 }

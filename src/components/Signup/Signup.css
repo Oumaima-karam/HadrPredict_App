@@ -58,7 +58,7 @@
     gap: 1rem;
 }
 
-.submit-container {
+.button {
     height: 45px;
     width: 100%;
     background-color: #2b7b8c;
@@ -75,10 +75,26 @@
     text-align: center;
 }
 
-.submit-container:hover {
+.button:hover {
     background-color: #1e5f6b;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-redirect {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #666;
+}
+
+.login-redirect a {
+    color: #2b7b8c;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-redirect a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 600px) {

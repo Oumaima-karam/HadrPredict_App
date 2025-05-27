@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Signup.css";
 import logo from "../Assets/logoo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
@@ -101,10 +101,13 @@ const Signup = () => {
             required
           />
         </div>
-        <div className="submit-container">
-          <button type="submit">S'inscrire</button>
-        </div>
+        <button type="submit">S'inscrire</button>
       </form>
+
+      <div className="login-redirect">
+        <p>Vous avez déjà un compte ? <Link to="/LoginPage">Connectez-vous</Link></p>
+      </div>
+
     </div>
   );
 };

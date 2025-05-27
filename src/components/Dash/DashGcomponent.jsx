@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Dash.module.css";
 import PieChart from "../Chart/PieChart";
+import Sidebar from '../Layout/Sidebar/Sidebar';
+
 import {
   BsFillArchiveFill,
   BsFillGrid3X3GapFill,
@@ -68,7 +70,11 @@ function DashGcomponent() {
   ];
 
   return (
-    <main className={styles.mainContainer}>
+    <div className="page-layout">
+
+      <Sidebar />
+
+      <main className={styles.mainContainer}>
       <div className={styles.mainTitle}>
         <h3>DASHBOARD</h3>
       </div>
@@ -135,6 +141,7 @@ function DashGcomponent() {
       </div>
       <PieChart />
     </main>
+    </div>
   );
 }
 
