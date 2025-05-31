@@ -1,10 +1,16 @@
 package com.ensao.hadrpredictapi.controller;
 
 import com.ensao.hadrpredictapi.service.ExcelEleveService;
-import org.springframework.http.ResponseEntity;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/api/eleve")
 public class EleveController {
@@ -25,5 +31,7 @@ public class EleveController {
             return ResponseEntity.badRequest().body("Erreur : " + e.getMessage());
         }
     }
+
 }
+
 

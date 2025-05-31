@@ -29,7 +29,7 @@ public class Eleve {
     @Column(name = "Type_etablissement")
     private String Type_etablissement;
 
-    @Column(name = "Situation")
+    @Column(name = "Situation", nullable = true)
     private String Situation;
 
     @Column(name = "Milieu")
@@ -53,11 +53,8 @@ public class Eleve {
     @Column(name = "Cycle")
     private String Cycle;
 
-
-
-
-    @Column(name = "Absance")
-    private Integer Absance;
+    @Column(name = "Absence")
+    private Integer Absence;
 
     @Column(name = "Resultat")
     private Double Resultat;
