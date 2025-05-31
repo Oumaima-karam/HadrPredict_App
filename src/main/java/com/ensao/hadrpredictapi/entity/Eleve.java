@@ -56,8 +56,8 @@ public class Eleve {
 
 
 
-    @Column(name = "Absance")
-    private Integer Absance;
+    @Column(name = "Absence")
+    private Integer Absence;
 
     @Column(name = "Resultat")
     private Double Resultat;

@@ -25,7 +25,7 @@ public class ExcelEleveService {
         List<Eleve> eleves = new ArrayList<>();
 
         try (InputStream is = file.getInputStream();
-             Workbook workbook = new XSSFWorkbook(is)) {
+            Workbook workbook = new XSSFWorkbook(is)) {
 
             Sheet sheet = workbook.getSheetAt(0);
             boolean header = true;
@@ -50,7 +50,7 @@ public class ExcelEleveService {
                 eleve.setNom_etablissement(getStringCellValue(row.getCell(9)));
                 eleve.setClasse(getStringCellValue(row.getCell(10)));
                 eleve.setCycle(getStringCellValue(row.getCell(11)));
-                eleve.setAbsance(getIntegerValue(row.getCell(12)));
+                eleve.setAbsence(getIntegerValue(row.getCell(12)));
                 eleve.setResultat(getDoubleValue(row.getCell(13)));
 
                 eleves.add(eleve);
