@@ -1,102 +1,113 @@
 .page-layout {
-    display: flex;
-    min-height: 100vh;
-}
-
-.sidebar {
-  width: 250px;
-  background: #2c3e50;
-  color: white;
-  position: fixed;
+  display: flex;
   height: 100vh;
-  overflow-y: auto;
+  background: #f5f8fb;
 }
 
 .main-content {
-    flex: 1;
-    padding: 20px;
-    margin-left: 250px;
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
 }
 
-.form-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.title {
+  font-size: 1.8rem;
+  color: #035466;
+  margin-bottom: 1.5rem;
 }
 
-.form-container h2 {
-    position: relative;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-    text-align: center;
+
+
+.template-button:hover {
+  background-color: #1d4ed8;
 }
 
-.form-container h2::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 25%;
-    width: 50%;
-    height: 4px;
-    background-color: #2b7b8c;
-    border-radius: 2px;
+.upload-zone {
+  border: 2px dashed #94a3b8;
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  background: white;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
+.file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.form-group label {
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #555;
+.upload-icon {
+  font-size: 2rem;
 }
 
-.form-group select,
-.form-group input[type="text"],
-.form-group input[type="file"] {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-    width: 100%;
-    box-sizing: border-box;
+.file-info {
+  margin-top: 1rem;
+  font-size: 1rem;
 }
 
-.form-group select:focus,
-.form-group input[type="text"]:focus {
-    outline: none;
-    border-color: #2b7b8c;
+.success-message {
+  color: green;
+  margin-top: 1rem;
+  font-weight: bold;
 }
 
-button[type="submit"] {
-    width: 230px;
-    display: block;
-    margin: 0 auto;
-    padding: 0.75rem 2rem;
-    background-color: #2b7b8c;
-    color: white;
-    border: none;
-    border-radius: 40px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.error-message {
+  color: red;
+  margin-top: 1rem;
+  font-weight: bold;
 }
 
-button[type="submit"]:hover {
-    background-color: #2b7b8c;
+.instructions {
+  background: #e2e8f0;
+  border-left: 5px solid #044959;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
 }
 
-@media (max-width: 768px) {
-    .form-container {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
+.instructions h3 {
+  margin-top: 0;
+  color: #034453;
+}
+
+.instructions ol {
+  padding-left: 1.2rem;
+}
+
+.instructions ul {
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  list-style: disc;
+}
+
+.excel-guide {
+  margin-top: 2rem;
+}
+
+.excel-guide h3 {
+  color: #1f2937;
+}
+
+.excel-sample {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.excel-sample th,
+.excel-sample td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.excel-sample thead {
+  background-color: #b0b5ba;
+  color: #2b7b8c;
+  font-weight: bold;
 }
