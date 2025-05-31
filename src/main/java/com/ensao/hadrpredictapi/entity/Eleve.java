@@ -53,6 +53,12 @@ public class Eleve {
     @Column(name = "Cycle")
     private String Cycle;
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> d3cb3d376f3590b2478f2bb6568e070c43a9e293
     @Column(name = "Absence")
     private Integer Absence;
 
