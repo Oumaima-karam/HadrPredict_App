@@ -27,7 +27,7 @@ public class ExcelEleveService {
         List<Eleve> eleves = new ArrayList<>();
 
         try (InputStream is = file.getInputStream();
-            Workbook workbook = new XSSFWorkbook(is)) {
+             Workbook workbook = new XSSFWorkbook(is)) {
 
             Sheet sheet = workbook.getSheetAt(0);
             boolean header = true;
@@ -40,11 +40,11 @@ public class ExcelEleveService {
 
                 Eleve eleve = new Eleve();
 
+                // Ordre des colonnes respecté selon le <th>
                 eleve.setIdEleve(getLongValue(row.getCell(0)));
                 eleve.setIdHandicap(getIntegerValue(row.getCell(1)));
                 eleve.setDate_de_naissance(getOffsetDateTimeValue(row.getCell(2)));
-                eleve.setType_etablissement(getStringCellValue(row.getCell(3)));
-<<<<<<< HEAD
+                eleve.setType_etablissement(getStringCellValue(row.getCell(3))); // Ajouté
                 eleve.setMilieu(getStringCellValue(row.getCell(4)));
                 eleve.setGenre(getStringCellValue(row.getCell(5)));
                 eleve.setCommune(getStringCellValue(row.getCell(6)));
@@ -54,23 +54,6 @@ public class ExcelEleveService {
                 eleve.setCycle(getStringCellValue(row.getCell(10)));
                 eleve.setAbsence(getIntegerValue(row.getCell(11)));
                 eleve.setResultat(getDoubleValue(row.getCell(12)));
-
-                // Situation (colonne 13) est optionnelle
-                if (row.getLastCellNum() > 13) {
-                    eleve.setSituation(getStringCellValue(row.getCell(13)));
-                }
-=======
-                eleve.setSituation(getStringCellValue(row.getCell(4)));
-                eleve.setMilieu(getStringCellValue(row.getCell(5)));
-                eleve.setGenre(getStringCellValue(row.getCell(6)));
-                eleve.setCommune(getStringCellValue(row.getCell(7)));
-                eleve.setProvince(getStringCellValue(row.getCell(8)));
-                eleve.setNom_etablissement(getStringCellValue(row.getCell(9)));
-                eleve.setClasse(getStringCellValue(row.getCell(10)));
-                eleve.setCycle(getStringCellValue(row.getCell(11)));
-                eleve.setAbsence(getIntegerValue(row.getCell(12)));
-                eleve.setResultat(getDoubleValue(row.getCell(13)));
->>>>>>> d3cb3d376f3590b2478f2bb6568e070c43a9e293
 
                 eleves.add(eleve);
             }
@@ -112,7 +95,6 @@ public class ExcelEleveService {
             return instant.atZone(ZoneId.systemDefault()).toOffsetDateTime();
         }
 
-        // Si la date est saisie en texte : "yyyy-MM-dd"
         String text = getStringCellValue(cell);
         try {
             return OffsetDateTime.parse(text);
