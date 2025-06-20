@@ -6,6 +6,7 @@ export default function FormPage() {
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const validExtensions = ['xls', 'xlsx'];
 
@@ -15,36 +16,50 @@ export default function FormPage() {
       setError('❌ Format invalide. Seuls les fichiers .xls et .xlsx sont autorisés.');
       setFile(null);
       setSuccess('');
-    } else {
-      setError('');
-      setFile(selectedFile);
-      uploadToBackend(selectedFile);
+      return;
     }
+    setError('');
+    setFile(selectedFile);
+    // Ne lance pas l'upload automatiquement ici, laisse l'utilisateur valider via bouton
+    setSuccess('');
   };
 
-  const uploadToBackend = (file) => {
+  const uploadToBackend = async () => {
+    if (!file) {
+      setError('❌ Veuillez sélectionner un fichier avant d\'importer.');
+      setSuccess('');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch('http://localhost:8081/api/eleve/upload', {
-      method: 'POST',
-      body: formData
-    })
-      .then(res => res.text())
-      .then(message => {
-        setSuccess(`✅ ${message}`);
-        setError('');
-      })
-      .catch(async err => {
-        console.error('Erreur complète :', err);
-        let message = "❌ Erreur lors de l'envoi du fichier.";
-        try {
-          const text = await err.response?.text?.();
-          if (text) message = `❌ ${text}`;
-        } catch {}
-        setError(message);
-        setSuccess('');
+    try {
+      const response = await fetch('http://localhost:8081/api/eleve/upload', {
+        method: 'POST',
+        body: formData,
       });
+
+      if (response.ok) {
+        const text = await response.text();
+        setSuccess(`✅ ${text}`);
+        setError('');
+        setFile(null); // reset fichier après succès
+      } else {
+        const errText = await response.text();
+        setError(`❌ Erreur serveur : ${errText || response.statusText}`);
+        setSuccess('');
+      }
+    } catch (err) {
+      setError(`❌ Erreur réseau : ${err.message}`);
+      setSuccess('');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleFileChange = (e) => {
@@ -62,16 +77,21 @@ export default function FormPage() {
 
   const downloadTemplate = () => {
     fetch('http://localhost:8081/api/eleve/template')
-      .then(res => res.blob())
+      .then(res => {
+        if (!res.ok) throw new Error('Impossible de télécharger le modèle.');
+        return res.blob();
+      })
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = 'modele_eleve.xlsx';
         a.click();
+        window.URL.revokeObjectURL(url);
       })
       .catch(() => {
-        setError("❌ Impossible de télécharger le modèle.");
+        setError('❌ Impossible de télécharger le modèle.');
+        setSuccess('');
       });
   };
 
@@ -92,6 +112,7 @@ export default function FormPage() {
             accept=".xls,.xlsx"
             className="file-input"
             onChange={handleFileChange}
+            disabled={loading}
           />
           <div className="upload-content">
             <span className="upload-icon">📁</span>
@@ -99,59 +120,80 @@ export default function FormPage() {
           </div>
         </div>
 
-        {file && <div className="file-info">📄 Fichier sélectionné : <strong>{file.name}</strong></div>}
-        {error && <div className="error-message">{error}</div>}
-        {success && <div className="success-message">{success}</div>}
+        {file && (
+          <div className="file-info">
+            📄 Fichier sélectionné : <strong>{file.name}</strong>
+          </div>
+        )}
 
-        <section className="instructions">
+        <button
+          onClick={uploadToBackend}
+          disabled={loading || !file}
+          style={{ marginTop: 15, padding: '10px 20px', cursor: loading || !file ? 'not-allowed' : 'pointer' }}
+        >
+          {loading ? 'Import en cours...' : 'Importer le fichier'}
+        </button>
+
+        {error && <div className="error-message" style={{ marginTop: 20 }}>{error}</div>}
+        {success && <div className="success-message" style={{ marginTop: 20 }}>{success}</div>}
+
+        <section className="instructions" style={{ marginTop: 40 }}>
           <h3>📘 Instructions :</h3>
           <ol>
-            <li>Le fichier Excel doit contenir exactement 13 colonnes </li>
-            <li>La première ligne doit contenir les en-têtes de colonnes</li>
-            <li>Les dates doivent être au format <strong>AAAA-MM-JJ</strong> ou <strong>JJ/MM/AAAA</strong></li>
-            <li>La taille maximale du fichier est <strong>20 Mo</strong></li>
+            <li>Le fichier Excel doit contenir exactement 13 colonnes.</li>
+            <li>La première ligne doit contenir les en-têtes de colonnes.</li>
+            <li>Les dates doivent être au format <strong>AAAA-MM-JJ</strong> ou <strong>JJ/MM/AAAA</strong>.</li>
+            <li>La taille maximale du fichier est <strong>20 Mo</strong>.</li>
           </ol>
         </section>
 
-        <section className="excel-guide">
-          <h3>📊 Aperçu d’un fichier correct :</h3>
-          <table className="excel-sample">
-            <thead>
-              <tr>
-                <th>id_eleve</th>
-                <th>id_handicap</th>
-                <th>date_de_naissance</th>
-                <th>Type_etablissement</th>
-                <th>Milieu</th>
-                <th>Genre</th>
-                <th>Commune</th>
-                <th>Province</th>
-                <th>Nom_etablissement</th>
-                <th>Classe</th>
-                <th>Cycle</th>
-                <th>Absence</th>
-                <th>Resultat</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1001</td>
-                <td>3</td>
-                <td>2012-05-14</td>
-                <td>Public</td>
-                <td>Urbain</td>
-                <td>F</td>
-                <td>Casablanca</td>
-                <td>Casablanca-Settat</td>
-                <td>Lycée Ibn Khaldoun</td>
-                <td>3ème</td>
-                <td>Secondaire</td>
-                <td>2</td>
-                <td>15</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+        <section className="excel-guide" style={{ marginTop: 40 }}>
+  <h3>📊 Exemple d’un fichier Excel valide :</h3>
+  <table className="excel-sample">
+    <thead>
+      <tr>
+        <th>idEleve</th>
+        <th>dateDeNaissance</th>
+        <th>genre</th>
+        <th>classe</th>
+        <th>cycle</th>
+        <th>absence</th>
+        <th>resultat</th>
+        <th>nomEcole</th>
+        <th>commune</th>
+        <th>province</th>
+        <th>typeSchool</th>
+        <th>milieu</th>
+        <th>situation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1001</td>
+        <td>2012-05-14</td>
+        <td>F</td>
+        <td>3ème</td>
+        <td>Secondaire</td>
+        <td>2</td>
+        <td>15.0</td>
+        <td>Lycée Ibn Khaldoun</td>
+        <td>Casablanca</td>
+        <td>Casablanca-Settat</td>
+        <td>Public</td>
+        <td>Urbain</td>
+        <td>Actif</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+        <button
+          onClick={downloadTemplate}
+          style={{ marginTop: 30, padding: '10px 20px' }}
+          disabled={loading}
+        >
+          Télécharger le modèle Excel
+        </button>
       </main>
     </div>
   );

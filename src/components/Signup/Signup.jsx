@@ -102,6 +102,7 @@ const Signup = () => {
           />
         </div>
         <button type="submit">S'inscrire</button>
+          <button type="submit">S'inscrire</button>
       </form>
 
       <div className="login-redirect">

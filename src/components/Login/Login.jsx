@@ -79,6 +79,7 @@ return (
             <Link to="/forgot-password">Mot de passe oublié ?</Link>
         </div>
         <button type="submit">Login</button>
+            <button type="submit">Login</button>
     </form>
     
 
