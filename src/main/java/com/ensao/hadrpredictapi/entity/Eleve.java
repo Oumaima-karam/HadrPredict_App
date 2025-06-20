@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -17,54 +19,32 @@ public class Eleve {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_eleve")
+    @Column(nullable = false, unique = true)
     private Long idEleve;
 
-    @Column(name = "id_handicap")
-    private Integer idHandicap;
+    @Column(nullable = false)
+    private LocalDate dateDeNaissance;
 
-    @Column(name = "date_de_naissance")
-    private OffsetDateTime date_de_naissance ;
+    private String situation;
 
-    @Column(name = "Type_etablissement")
-    private String Type_etablissement;
+    @Column(nullable = false)
+    private String genre;
 
-    @Column(name = "Situation", nullable = true)
-    private String Situation;
+    @ManyToOne
+    @JoinColumn(name = "id_ecole", nullable = false)
+    private Ecole ecole;
 
-    @Column(name = "Milieu")
-    private String Milieu;
+    private String classe;
+    private String cycle;
+    private Integer absence;
+    private Double resultat;
 
-    @Column(name = "Genre")
-    private String Genre;
+    @Column(name = "prediction")
+    private Integer prediction;
 
-    @Column(name = "Commune")
-    private String Commune;
+    @Column(name = "probability_abandon")
+    private Double probabilityAbandon;
 
-    @Column(name = "Province")
-    private String Province;
-
-    @Column(name = "Nom_etablissement")
-    private String Nom_etablissement;
-
-    @Column(name = "Classe")
-    private String Classe;
-
-    @Column(name = "Cycle")
-    private String Cycle;
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> d3cb3d376f3590b2478f2bb6568e070c43a9e293
-    @Column(name = "Absence")
-    private Integer Absence;
-
-    @Column(name = "Resultat")
-    private Double Resultat;
-    // Getters et Setters
 
 }
 

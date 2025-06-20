@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // <- ici on met le pattern d'URL de l'API à exposer
-                        .allowedOrigins("http://localhost:3001") // origine autorisée
+                        .allowedOrigins("http://localhost:3000") // origine autorisée
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
