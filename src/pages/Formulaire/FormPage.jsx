@@ -142,6 +142,7 @@ export default function FormPage() {
           <ol>
             <li>Le fichier Excel doit contenir exactement 13 colonnes.</li>
             <li>La première ligne doit contenir les en-têtes de colonnes.</li>
+            
             <li>Les dates doivent être au format <strong>AAAA-MM-JJ</strong> ou <strong>JJ/MM/AAAA</strong>.</li>
             <li>La taille maximale du fichier est <strong>20 Mo</strong>.</li>
           </ol>
