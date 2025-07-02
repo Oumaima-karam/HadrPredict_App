@@ -17,15 +17,25 @@ public class SchoolController {
     @Autowired
     private EcoleService schoolService;
 
+    // Ajouter une école
     @PostMapping
     public ResponseEntity<Ecole> createSchool(@RequestBody Ecole ecole) {
         Ecole saved = schoolService.saveSchool(ecole);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
+    // Obtenir toutes les écoles
     @GetMapping
     public List<Ecole> getAll() {
         return schoolService.getAllSchools();
     }
+
+    @GetMapping("/map")
+    public ResponseEntity<List<Ecole>> getAllWithCoordinates() {
+        List<Ecole> dtos = schoolService.getSchoolsWithCoordinates();
+        return ResponseEntity.ok(dtos);
+    }
 }
+
+
 

@@ -17,6 +17,9 @@ public class EcoleService {
     @Autowired
     private GeocodingService geocodingService;
 
+    /**
+     * Enregistre une école, et ajoute les coordonnées si elles sont manquantes.
+     */
     public Ecole saveSchool(Ecole ecole) {
         Optional<Ecole> existing = schoolRepository.findByNomAndCommune(ecole.getNom(), ecole.getCommune());
 
@@ -39,10 +42,23 @@ public class EcoleService {
         }
     }
 
+    /**
+     * Retourne toutes les écoles.
+     */
     public List<Ecole> getAllSchools() {
         return schoolRepository.findAll();
     }
 
+    /**
+     * Retourne uniquement les écoles avec coordonnées (pour Google Maps).
+     */
+    public List<Ecole> getSchoolsWithCoordinates() {
+        return schoolRepository.findByLatitudeIsNotNullAndLongitudeIsNotNull();
+    }
+
+    /**
+     * Met à jour toutes les écoles qui n'ont pas encore de coordonnées.
+     */
     public void updateAllSchoolsWithMissingCoordinates() {
         List<Ecole> schools = schoolRepository.findAll();
         for (Ecole ecole : schools) {
@@ -54,4 +70,6 @@ public class EcoleService {
             }
         }
     }
+
+
 }
